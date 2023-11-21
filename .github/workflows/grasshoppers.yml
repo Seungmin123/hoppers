@@ -1,0 +1,34 @@
+name: GRASSHOPPERS
+on: 
+  schedule:
+    - cron:  '0 20 * * *'
+  workflow_dispatch:
+    
+defaults:
+  run:
+    shell: bash
+    working-directory: ./grass
+    
+jobs:
+  hoppers-hop:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+      - name: a frog now starts hopping
+        run: |
+          sed -i 's/.\{4\}╮$//g' grass.txt
+          hopping_count=$(wc -l grass.txt | awk '{ print $1 }') ;
+          printf "━%.0s" $(eval echo "{1..$hopping_count}") >> grass.txt ;
+          printf "⌒🐸" >> grass.txt ;
+      - name: a grasshopper meets a new friend
+        run: |
+          printf "🦗⌒━ ╮\n" >> grass.txt ;
+          cat grass.txt ;
+      - name: two friends hop, hop, hop.
+        run: |
+          git config --global user.name 'Seungmin123'
+          git config --global user.email 'dltmdals147@gmail.com'
+          git commit -am "Setting Grass Hopper"
+          git push
