@@ -30,4 +30,4 @@ jobs:
           message: "Auto updating my readme"
           add: "*.svg"
         env:
-          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
